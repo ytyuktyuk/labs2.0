@@ -1,0 +1,127 @@
+Практическая работа  «Перегрузка методов и полифорфизм».
+Вариант - 9
+Расчет объема куба {V=a3}, прямоугольного параллелепипеда {V=a*b*c}, цилиндра {V=π*r2*h}, шара {(V=4*π*r3)/3}.
+
+class Сount
+        {
+            public string Color{ get; set; }
+            public void Parameter(string Shape, int Side)
+            {
+                int Values = Side * Side * Side;
+                Console.WriteLine($"объём {Shape} со стороной {Side} = {Values}");
+            }
+            public void Parameter(string Shape, int Side1, int Side2, int Side3)
+            {
+                int Values = Side1 * Side2 * Side3;
+                Console.WriteLine($"объём {Shape} со сторонами {Side1},{Side2},{Side3} = {Values}");
+            }
+            public void Parameter(string Shape, int radius, int height)
+            {
+               double Values = 3.14 * radius * radius * height;
+               Console.WriteLine($"объём {Shape} с радиусом {radius} и высотой {height} = {Values}");
+            }
+            public void Parameter(string Shape, double radius)
+            {
+                double Values = (4 * 3.14 * radius * radius * radius)/3;
+                Console.WriteLine($"объём {Shape} с радиусом {radius} = {Values}");
+            }            
+        }  
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Сount Values = new Сount{Color = "Red"};
+        Сount.Parameter("куба", 3);
+        Сount.Parameter("параллелепипеда", 3,4,5);
+        Сount.Parameter("цилиндра", 3, 5);
+        Сount.Parameter("шара", 3.0);
+    }
+}
+interface IShape
+{
+    double CalculateVolume();
+}
+
+class Cube : IShape
+{
+    public double Side { get; set; }
+
+    public Cube(double side)
+    {
+        Side = side;
+    }
+
+    public double CalculateVolume()
+    {
+        return Math.Pow(Side, 3);
+    }
+}
+
+class RectangularPrism : IShape
+{
+    public double Length { get; set; }
+    public double Width { get; set; }
+    public double Height { get; set; }
+
+    public RectangularPrism(double length, double width, double height)
+    {
+        Length = length;
+        Width = width;
+        Height = height;
+    }
+
+    public double CalculateVolume()
+    {
+        return Length * Width * Height;
+    }
+}
+
+class Cylinder : IShape
+{
+    public double Radius { get; set; }
+    public double Height { get; set; }
+
+    public Cylinder(double radius, double height)
+    {
+        Radius = radius;
+        Height = height;
+    }
+
+    public double CalculateVolume()
+    {
+        return Math.PI * Math.Pow(Radius, 2) * Height;
+    }
+}
+
+class Sphere : IShape
+{
+    public double Radius { get; set; }
+
+    public Sphere(double radius)
+    {
+        Radius = radius;
+    }
+
+    public double CalculateVolume()
+    {
+        return (4.0 / 3.0) * Math.PI * Math.Pow(Radius, 3);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        IShape cube = new Cube(3);
+        Console.WriteLine($"Объем куба: {cube.CalculateVolume()}");
+
+        IShape rectangularPrism = new RectangularPrism(3, 4, 5);
+        Console.WriteLine($"Объем прямоугольного параллелепипеда: {rectangularPrism.CalculateVolume()}");
+
+        IShape cylinder = new Cylinder(3, 5);
+        Console.WriteLine($"Объем цилиндра: {cylinder.CalculateVolume()}");
+
+        IShape sphere = new Sphere(3);
+        Console.WriteLine($"Объем шара: {sphere.CalculateVolume()}");
+    }
+}
