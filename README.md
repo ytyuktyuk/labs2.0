@@ -26,6 +26,7 @@ C# NETFramework v4.8б
 2. Откройте файл проекта .sln и запустите отладку.
 ### Задания:
 Лабораторная работа 1 выполнялась при преподавателе.
+
 [Лабораторная работа 2 (часть 1)](https://github.com/ytyuktyuk/labs2.0/blob/7a85dfe241a4ea45fd4db047e3492ff529a9367e/WinQuestion.sln)
 
 [Лабораторная работа 2 (часть 2](https://github.com/ytyuktyuk/labs2.0/blob/7a85dfe241a4ea45fd4db047e3492ff529a9367e/MdiApplication.sln)
